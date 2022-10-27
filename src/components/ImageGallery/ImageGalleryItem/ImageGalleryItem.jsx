@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import s from './ImageGallery.moduleItem.css';
+
+class ImageGalleryItem extends Component {
+  render() {
+    const { webformatURL, tags, largeImageURL, id } = this.props.arr;
+    return (
+      <a
+        href={largeImageURL}
+        id={id}
+        className={s.ImageGalleryItemLink}
+        onClick={e => {
+          e.preventDefault();
+          return this.props.imgIdToUp(e.currentTarget.id);
+        }}
+      >
+        <img
+          src={webformatURL}
+          alt={tags}
+          className={s.ImageGalleryItemImage}
+        />
+      </a>
+    );
+  }
+}
+
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string,
+  tags: PropTypes.string,
+  id: PropTypes.number,
+};
+
+export default ImageGalleryItem;
